@@ -41,9 +41,6 @@ public class Utils {
 	
 	// Atributos da classe - vars globais, vistos por todos os métodos: Static - pertence à classe
 	static boolean resposta;								// recebe a resposta de um qq utilitário
-	static boolean loginResult = false;						// Resultado a devolver no fim dos utilitários
-	
-
 	
 	
 	
@@ -189,7 +186,7 @@ public class Utils {
 	 * 			Static para não criar objetos 
 	 */
 	
-	public static boolean login() {
+	public static void login() {
 
 		Stage janela = new Stage();							// Cria uma blank window
 		
@@ -224,12 +221,9 @@ public class Utils {
 			Button btnLogin = new Button("Log Ins");
 			btnLogin.setOnAction(e -> {							// Acção do botão:
 				
-				if(!isNumeric(txtUserName, "UserName")){
-					alertBox("SIMULAÇÃO BD",						// Simulação de acesso à BD. Devolve TRUE  
-							  "Username: "+txtUserName.getText()+", "
-							+ "Password: "+txtPassword.getText());
-					loginResult = true;								// NOTA: classes inner anonimas não podem aceder a
-				}
+				alertBox("SIMULAÇÃO BD",						// Simulação de acesso à BD. Devolve TRUE  
+						"Username: "+txtUserName.getText()+", "
+						+ "Password: "+txtPassword.getText());
 				//todo: testar um qq match
 			});													// vars locais do método. Têm que ser static atributs
 			layoutRoot.add(btnLogin,  1, 2);					// Botão Adicionado à coluna 1, linha 2	 
@@ -241,8 +235,6 @@ public class Utils {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		return loginResult;										// Ao fechar, devolve a resposta para a Main.
 	}
 
 
