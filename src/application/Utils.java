@@ -1,7 +1,5 @@
 package application;
 
-import javax.swing.text.html.StyleSheet;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
