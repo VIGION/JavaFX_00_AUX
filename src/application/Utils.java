@@ -17,15 +17,17 @@ import javafx.scene.layout.VBox;
 /* PARA IMPORTAR ESTA CLASSE: 
  * 	1 - No projeto x, registar este projeto:
  *  	Rato dtº sobre o nome do projeto x - Properties
- *  	Java ClassPath -> Projects - Add (Mostra os projetos do workSpace: escolher este) - OK
+ *  	JavaBuild Path -> Projects - Add 
+ *  	(Mostra os projetos do workSpace: escolher este) - OK
  *	2 - No project x, escrever: import application.Utils; 
- *		Os métodos já estarão disponíveis
- *		Nota: se o projeto tiver um package diferente, terá que ser referenciado:
- *		import package.Class  
+ *		Os métodos destas clases já estarão disponíveis.
+ *		Nota: se o projeto tiver um package diferente, 
+ *		terá que ser referenciado: 	import package.Class  
  * --------------------------------------------------------------------------------------------------------
  * 	Lista de utilitários:
- * 	- AlertBox: 			ConfirmationBox devolve umboolean com a resposta de 2 botões
- * 	- ConfirmationBox: 		para emitir uma mensagem passada pela janela principal e obter uma resposta boolean
+ * 	- AlertBox:				Controi msgBox. Recebe 2 strings para título e msg.
+ * 	- ConfirmationBox:		devolve umboolean com a resposta de 2 botões
+ * 							para emitir uma mensagem passada pela janela principal e obter uma resposta boolean
  * 	- confirmationCloseBox: Identico ao anterior, mas encerra a app.
  * 	- login: 				Permite preencher o UserName e password, simula a verificação na BD e devolve true se ok
  *  - isNumeric: 			validação de dados num TextField - verifica se é numérico.
@@ -57,6 +59,7 @@ public class Utils {
 
 		Stage janela = new Stage();							// Cria uma blank window
 		janela.initModality(Modality.APPLICATION_MODAL);	// Define a janela MODAL.
+		//janela.initModality(Modality.WINDOW_MODAL);		// Define a janela Não MODAL.
 		janela.setTitle(title);								// Como título, recebe a string do parametro
 		janela.setMinWidth(300);							// Largura da janela
 		
