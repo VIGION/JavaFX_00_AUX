@@ -105,7 +105,7 @@ public class Utils {
 			janela.close();
 		});
 		
-		Button btnNo = new Button("Não");				// Cria botão para fechar janela
+		Button btnNo = new Button("Não");					// Cria botão para fechar janela
 		btnNo.setOnAction(e -> {							// Ação: resposta false, fecha janela
 			resposta = false;								
 			janela.close();
