@@ -70,9 +70,9 @@ public class Aluno {
 	/* Prepara tamanho e qualidade da imagem */
 	public ImageView setImgvSize (ImageView imgv){
 		imgv.setFitWidth(IMG_WITH);		// resizes the image
-        imgv.setPreserveRatio(true);	// preserving the ratio
-        imgv.setSmooth(true);			// higher quality filtering method
-        imgv.setCache(true);			// cached to improve performance
+        imgv.setPreserveRatio(true);	// Preserva o racio original da img
+        imgv.setSmooth(true);			// Filtro de alta qualidade 
+        imgv.setCache(true);			// Poe em cach
         
         return imgv;
 	}
