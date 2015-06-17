@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
  * 							para emitir uma mensagem passada pela janela principal e obter uma resposta boolean
  * 	- confirmationCloseBox: Identico ao anterior, mas encerra a app.
  * 	- login: 				Permite preencher o UserName e password, simula a verificação na BD e devolve true se ok
+ *  - loginCSS: 			Login com CSS style sheet. Funcionamento igual ao login()
  *  - isNumeric: 			validação de dados num TextField - verifica se é numérico.
  *  - isText: 				validação dos dados de uma string - verifica se contem texto a-z, A-Z
  *  - isMail				validação de dados num TextField - verifica se é email.
@@ -183,9 +184,8 @@ public class Utils {
 	
 	/*---------------------------------------------------------------------------------------------------
 	 * Login - 	Janela com GridPane para exemplo de Layout.
-	 * 			Permite preencher o UserName,
-	 * 			Não testa em BD.
-	 * 			Devolve TRUE apenas
+	 * 			Permite preencher o UserName e password
+	 * 			Não testa em BD. Não tem parametros de entrada ou retorno
 	 * 			Static para não criar objetos 
 	 */
 	
@@ -199,27 +199,29 @@ public class Utils {
 			janela.setTitle("LOGIN");							// Título da janela
 			janela.setMinWidth(300);							// Largura mínima da janela
 
-			// RootLayout
-			GridPane layoutRoot = new GridPane();
-			layoutRoot.setPadding(new Insets(10, 10, 10, 10)); 	// espaços para a janela
-			layoutRoot.setVgap(8);								// espaço das colunas (pixeis)
-			layoutRoot.setHgap(10);								// espaço das linhas	
+			// RootLayout desta janela
+			GridPane layoutLogin = new GridPane();
+			layoutLogin.setPadding(new Insets(10, 10, 10, 10)); // espaços para a janela
+			layoutLogin.setVgap(8);								// espaço das colunas (pixeis)
+			layoutLogin.setHgap(10);							// espaço das linhas	
 			
 			// UserName
 			Label labelUsaerName = new Label("UserName:");
-			layoutRoot.add(labelUsaerName, 0, 0);				// Adicionar à célula col 0,linha 0
+			layoutLogin.add(labelUsaerName, 0, 0);				// Adicionar à célula col 0,linha 0
 			
 			TextField txtUserName = new TextField();			// Campo de texto vazio
-			layoutRoot.add(txtUserName, 1, 0);					// Adicionado à c+elula col 1, linha 0
+			layoutLogin.add(txtUserName, 1, 0);					// Adicionado à c+elula col 1, linha 0
+			
 			
 			// Password
 			Label labelPassword = new Label("Password:");
-			layoutRoot.add(labelPassword, 0, 1);				// Adicionar à célula col 0, linha 1
+			layoutLogin.add(labelPassword, 0, 1);				// Adicionar à célula col 0, linha 1
 			
 			PasswordField txtPassword = new PasswordField();	// Campo de texto vazio
 			txtPassword.setPromptText("password");				// Sugere texto. Desaparece ao toque	
-			layoutRoot.add(txtPassword, 1, 1);					// Adicionado à c+elula coluna 1, linha 1
+			layoutLogin.add(txtPassword, 1, 1);					// Adicionado à c+elula coluna 1, linha 1
 
+			
 			// Botão Login
 			Button btnLogin = new Button("Log Ins");
 			btnLogin.setOnAction(e -> {							// Acção do botão:
@@ -229,9 +231,9 @@ public class Utils {
 						+ "Password: "+txtPassword.getText());
 				//todo: testar um qq match
 			});													// vars locais do método. Têm que ser static atributs
-			layoutRoot.add(btnLogin,  1, 2);					// Botão Adicionado à coluna 1, linha 2	 
+			layoutLogin.add(btnLogin,  1, 2);					// Botão Adicionado à coluna 1, linha 2	 
 			
-			Scene scene = new Scene(layoutRoot, 300, 200);		// Cria a Scene e associa o Layout 
+			Scene scene = new Scene(layoutLogin, 300, 200);		// Cria a Scene e associa o Layout 
 			janela.setScene(scene);								// Associa a Scena à janela
 			janela.showAndWait();								// Executa e prende o controlo até ser fechada
 			
@@ -241,6 +243,68 @@ public class Utils {
 	}
 
 
+	
+	
+	/*---------------------------------------------------------------------------------------------------
+	 * LoginCSS - Aplica temas CSS para melhorar gráficos
+	 * 			Janela com GridPane e CSS Theme: Exercício. 19a
+	 * 			Permite preencher o UserName e password, mas não testa em BD
+	 * 			Nada devolve TRUE apenas. Static para não criar objetos
+	 * 			 
+	 */
+	
+	public static void loginCSS() {
+
+		Stage janela = new Stage();								// Cria uma blank window
+		
+		try {
+			
+			janela.initModality(Modality.APPLICATION_MODAL);	// Define-a MODAL.
+			janela.setTitle("LOGIN");							// Título da janela
+			janela.setMinWidth(300);							// Largura mínima da janela
+
+			// RootLayout desta janela
+			GridPane layoutLogin = new GridPane();
+			layoutLogin.setPadding(new Insets(10, 10, 10, 10)); // espaços para a janela
+			layoutLogin.setVgap(8);								// espaço das colunas (pixeis)
+			layoutLogin.setHgap(10);							// espaço das linhas	
+			
+			// UserName
+			Label labelUsaerName = new Label("UserName:");
+			layoutLogin.add(labelUsaerName, 0, 0);				// Adicionar à célula col 0,linha 0
+			
+			TextField txtUserName = new TextField();			// Campo de texto vazio
+			layoutLogin.add(txtUserName, 1, 0);					// Adicionado à c+elula col 1, linha 0
+			
+			
+			// Password
+			Label labelPassword = new Label("Password:");
+			layoutLogin.add(labelPassword, 0, 1);				// Adicionar à célula col 0, linha 1
+			
+			PasswordField txtPassword = new PasswordField();	// Campo de texto vazio
+			txtPassword.setPromptText("password");				// Sugere texto. Desaparece ao toque	
+			layoutLogin.add(txtPassword, 1, 1);					// Adicionado à c+elula coluna 1, linha 1
+
+			
+			// Botão Login
+			Button btnLogin = new Button("Log Ins");
+			btnLogin.setOnAction(e -> {							// Acção do botão:
+				
+				alertBox("SIMULAÇÃO BD",						// Simulação de acesso à BD. Devolve TRUE  
+						"Username: "+txtUserName.getText()+", "
+						+ "Password: "+txtPassword.getText());
+				//todo: testar um qq match
+			});													// vars locais do método. Têm que ser static atributs
+			layoutLogin.add(btnLogin,  1, 2);					// Botão Adicionado à coluna 1, linha 2	 
+			
+			Scene scene = new Scene(layoutLogin, 300, 200);		// Cria a Scene e associa o Layout 
+			janela.setScene(scene);								// Associa a Scena à janela
+			janela.showAndWait();								// Executa e prende o controlo até ser fechada
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 	
 	/*-------------------------------------------------------------------------------------------------
