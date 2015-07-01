@@ -6,9 +6,10 @@ import javafx.scene.image.ImageView;
 
 public class Aluno {
 
-	private int nTurma;
-    private String nome;
-    private ImageView imgv;
+	private int nProc;			// Nª Processo - Necessário para JavaFX_25_SQL
+	private int nTurma;			// Nº Aluno na Turma
+    private String nome;		// Nome
+    private ImageView imgv;		// Objeto de tratamento de imagem
     
     private static int IMG_WITH = 40;		// Constante com largura de imagem
 
@@ -23,8 +24,8 @@ public class Aluno {
         this.nTurma = nTurma;
         this.nome = nome;
     }
-    
-    // Construtor com imagem
+
+	// Construtor com imagem
 	public Aluno(int nTurma, String nome, ImageView imgv) {
         this.nTurma = nTurma;
         this.nome = nome;
@@ -34,8 +35,23 @@ public class Aluno {
         this.imgv = setImgvSize(imgv);
     }
 	
+	// Construtor com atributos para a aula 25 SQL - Sem Imagem
+	public Aluno(int nProc, int nTurma, String nome) {
+        this.nProc = nProc;
+		this.nTurma = nTurma;
+        this.nome = nome;
+    }
+	
 	
 	//----------------------------------------getter&Setters
+	
+	// Nº Processo
+	public int getNProc() {
+		return nProc;
+	}
+	public void setNProc(int nProc) {
+		this.nProc = nProc;
+	}
 	
 	
 	// Nº Turma
