@@ -43,17 +43,17 @@ public class UtilsSQLConn {
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
 			if(msgON){
-				Utils.alertBox("layoutLeft", "Base dados aberta");
+				Utils.alertBox("mySqlTeste", "Base dados aberta");
 			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
-			Utils.alertBox("layoutLeft", "Erro na ligação");
+			Utils.alertBox("mySqlTeste", "Erro na ligação");
 		}
 		catch(ClassNotFoundException ex){				// Apanha Erro da Class.forName()
-			Utils.alertBox("layoutLeft", "Erro no Driver");
+			Utils.alertBox("mySqlTeste", "Erro no Driver");
 		}
 		catch(Exception ex){								// Apanha todas as restantes Exceções
-			Utils.alertBox("layoutLeft", "Erro genérico na ligação");
+			Utils.alertBox("mySqlTeste", "Erro genérico na ligação");
 			ex.printStackTrace();
 		}
 		finally{
@@ -151,7 +151,7 @@ public class UtilsSQLConn {
 	}
 	
 	
-	// Executa um insert ou update para SGBD MySql.
+	// Executa um insert ou update ou delete para SGBD MySql.
 	public static void mySqlDml(String dml){
 		try{
 			//Tenta ligar-se ao SGBD e à base de dados
@@ -205,7 +205,7 @@ public class UtilsSQLConn {
     	
     	ObservableList<Aluno> listaAlunos = FXCollections.observableArrayList();
 
-    	/*TODO: Lista para preencher com os dados da tabela
+    	/* Lista para preencher com os dados da tabela de Alunos
     	 * 	Executa uma query à tabela Aluno e para cada registo, 
     	 * 		1 Extrai os 3 atributos: nProc, NAluno e nome
     	 *  	2 Adiciona à lista
