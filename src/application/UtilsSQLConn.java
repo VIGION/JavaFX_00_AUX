@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
+
 
 
 public class UtilsSQLConn {
@@ -33,7 +33,7 @@ public class UtilsSQLConn {
 	static String SQLSERVER_DB_USER = "sa";								// BD user name SQLSERVER
 	static String SQLSERVER_DB_PASS = "123";							// BD password SQLSERVER
 	
-	
+	static boolean msgON = false;										// Ativa Mensagens de controlo
 	
 	/* mySqlTeste()- Cria e testa uma ligação a um SGBD MYSQL.*/
 	public static void mySqlTeste(){
@@ -42,7 +42,9 @@ public class UtilsSQLConn {
 			
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
-			Utils.alertBox("layoutLeft", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("layoutLeft", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
 			Utils.alertBox("layoutLeft", "Erro na ligação");
@@ -66,7 +68,9 @@ public class UtilsSQLConn {
 			//Tenta ligar-se ao SGBD e à base de dados
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
-			Utils.alertBox("layoutLeft", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("layoutLeft", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
 			Utils.alertBox("layoutLeft", "Erro na ligação");
@@ -90,7 +94,9 @@ public class UtilsSQLConn {
 									+", "+rs.getString(2)	// 
 									+", "+rs.getString(4)+"\n";
 					}
-					Utils.alertBox("DB", queryResult);
+					if(msgON){
+						Utils.alertBox("DB", queryResult);
+					}
 				}		
 				shutdownConnection();
 			}
@@ -112,7 +118,9 @@ public class UtilsSQLConn {
 			//Tenta ligar-se ao SGBD e à base de dados
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
-			Utils.alertBox("layoutLeft", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("layoutLeft", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
 			Utils.alertBox("layoutLeft", "Erro na ligação");
@@ -149,7 +157,9 @@ public class UtilsSQLConn {
 			//Tenta ligar-se ao SGBD e à base de dados
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
-			Utils.alertBox("layoutLeft", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("layoutLeft", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){								// Apanha Erro da connection ou DML
 			Utils.alertBox("layoutLeft", "Erro na ligação");
@@ -168,11 +178,13 @@ public class UtilsSQLConn {
 					
 					Statement stmt = conn.createStatement();		// Cria um obj comando sql
 					int dmlResult = stmt.executeUpdate(dml);		// Executa-o. Devolve o nº de registos tratados
-					if (dmlResult > 0){								// Devolve inteiro > 0 se ok
+					if (dmlResult > 0 && msgON){					// Devolve inteiro > 0 se ok
 						Utils.alertBox("DB","Comando DML OK");		// 0 ou menor, se ERRO.
 					}
 					else{
-						Utils.alertBox("DB","ERRO Comando DML");
+						if(msgON){
+							Utils.alertBox("DB","ERRO Comando DML");
+						}
 					}
 				}		
 				shutdownConnection();
@@ -204,7 +216,9 @@ public class UtilsSQLConn {
 			//Tenta ligar-se ao SGBD e à base de dados
 			Class.forName(MYSQL_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(MYSQL_DB_URL, MYSQL_DB_USER, MYSQL_DB_PASS );
-			Utils.alertBox("carregaListaAlunos", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("carregaListaAlunos", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
 			Utils.alertBox("carregaListaAlunos", "Erro na ligação");
@@ -236,10 +250,10 @@ public class UtilsSQLConn {
 					//Alternativa: uma unica linha, usando o contrutor de Aluno
 					//listaAlunos.add(new Aluno(rs.getInt(1), rs.getInt(2), rs.getString(4)));
 				}
-				Utils.alertBox("carregaListaAlunos", "Lista Construida");
-				
+				if(msgON){
+					Utils.alertBox("carregaListaAlunos", "Lista Construida");
+				}
 				shutdownConnection();
-				
 			}
 			catch(SQLException ex){							// Apanha Erro da connection ou DML
 				Utils.alertBox("carregaListaAlunos", "Finally - Erro na ligação");
@@ -263,7 +277,9 @@ public class UtilsSQLConn {
 			// Ligação ao SGBD e à BD.
 			Class.forName(SQLSERVER_JDBC_DRIVER).newInstance();
 			conn = DriverManager.getConnection(SQLSERVER_DB_URL);
-			Utils.alertBox("layoutLeft", "Base dados aberta");
+			if(msgON){
+				Utils.alertBox("layoutLeft", "Base dados aberta");
+			}
 		}
 		catch(SQLException ex){							// Apanha Erro da connection ou DML
 			Utils.alertBox("layoutLeft", "Erro na ligação");
@@ -279,7 +295,9 @@ public class UtilsSQLConn {
 			try{
 				if(conn != null){
 					conn.close();
-					Utils.alertBox("SQLSERVER", "Base dados fechada");
+					if(msgON){
+						Utils.alertBox("SQLSERVER", "Base dados fechada");
+					}
 				}
 			}
 			catch(SQLException ex){							// Apanha Erro da connection ou DML
@@ -294,7 +312,9 @@ public class UtilsSQLConn {
 	public static void shutdownConnection(){
 		try{
 			if (conn != null) { conn.close();}	// apenas se estiver aberta
-			Utils.alertBox("SQLshutDown", "Base dados fechada");
+			if(msgON){
+				Utils.alertBox("SQLshutDown", "Base dados fechada");
+			}
 		}
 		catch(SQLException e){
 			Utils.alertBox("SQLshutDown", "Erro no fecho da ligação à BD");
